@@ -4,6 +4,7 @@ import { Manga } from './../model/manga';
 import { Component, OnInit } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mangas',
@@ -13,11 +14,13 @@ import { MatDialog } from '@angular/material/dialog';
 export class MangasComponent implements OnInit {
 
   mangas$: Observable<Manga[]>;
-  displayedColumns = ['name', 'category'];
+  displayedColumns = ['name', 'category', 'actions'];
 
   constructor(
     private mangasService: MangasService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute) {
 
     this.mangas$ = this.mangasService.list().pipe(
       catchError(error => {
@@ -36,6 +39,10 @@ export class MangasComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
 }

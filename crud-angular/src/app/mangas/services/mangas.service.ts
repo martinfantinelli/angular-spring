@@ -9,7 +9,7 @@ import { delay, first, tap } from 'rxjs';
 })
 export class MangasService {
 
-  private readonly API = '/assets/mangas.json';
+  private readonly API = 'api/mangas';
 
   constructor(private httpClient: HttpClient) { }
 

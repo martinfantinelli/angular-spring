@@ -20,4 +20,8 @@ export class MangasService {
       tap(mangas => console.log(mangas))
     );
   }
+
+  save(record: Manga) {
+    return this.httpClient.post<Manga>(this.API, record);
+  }
 }
